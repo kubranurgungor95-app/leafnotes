@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OrkestraApp - Büyülü Sahne</title>
+
+    <!-- Şık yazı tipleri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- VexFlow Müzik Notasyonu Kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
+</head>
+<body>
+
+    <!-- Arka Plan Katmanları (Gündüz, Aydınlık ve Gece) -->
+    <div class="bg-layer bg-gunduz"></div>
+    <div class="bg-layer bg-aydinlik" id="aydinlikLayer"></div>
+    <div class="bg-layer bg-gece" id="nightLayer"></div>
+
+    <!-- Yaprak Efektleri Konteyneri -->
+    <div id="leavesContainer"></div>
+
+    <!-- Arayüz / Kontrol Paneli -->
+    <div class="scene-container">
+        <div class="controls">
+            <button id="recordBtn">Click For Record</button>
+        </div>
+
+        <!-- Notaların ve Portenin Gösterileceği Alan -->
+        <div id="resultPanel" class="hidden">
+            <h3>Detected Notes (G3 - G6)</h3>
+            <div id="staffOutput"></div>
+
+            <button id="downloadStaffBtn" style="display: none;"> 📥 Download PDF</button>
+
+            <button id="nextBtn" style="display: none;">Show Solfege</button>
+
+            <div id="solfegeOutput" style="display: none;"></div>
+
+            <button id="downloadBtn" style="display: none;"> 📥 Download PDF</button>
+
+            <button id="prevBtn" style="display: none;">Show Staff</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

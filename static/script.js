@@ -242,7 +242,7 @@ function downloadStaffAsPDF() {
     printWindow.document.write(`
         <html>
             <head>
-                <title>OrkestraApp - Staff Report</title>
+                <title>leafNotes - Staff Report</title>
                 <style>
                     body { font-family: 'Georgia', serif; padding: 40px; color: #3b220c; background: #fffdf0; text-align: center; }
                     h2 { color: #5c2c16; border-bottom: 2px solid #8b5a2b; padding-bottom: 10px; margin-bottom: 30px; }
@@ -251,7 +251,7 @@ function downloadStaffAsPDF() {
                 </style>
             </head>
             <body>
-                <h2>🎵 OrkestraApp - Staff Report</h2>
+                <h2>🎵 leafNotes - Staff Report</h2>
                 <div class="staff-container">
                     ${svgContent}
                 </div>
@@ -275,7 +275,7 @@ function downloadSolfegeAsPDF() {
     printWindow.document.write(`
         <html>
             <head>
-                <title>OrkestraApp - Solfege Report</title>
+                <title>leafNotes - Solfege Report</title>
                 <style>
                     body { font-family: 'Georgia', serif; padding: 40px; color: #3b220c; background: #fffdf0; }
                     h2 { text-align: center; color: #5c2c16; border-bottom: 2px solid #8b5a2b; padding-bottom: 10px; }
@@ -285,7 +285,7 @@ function downloadSolfegeAsPDF() {
                 </style>
             </head>
             <body>
-                <h2>🎵 OrkestraApp - Solfege Report</h2>
+                <h2>🎵 leafNotes - Solfege Report</h2>
                 <div class="section">
                     <div class="title">Solfege Sequence:</div>
                     <div class="content">${solfegeList}</div>

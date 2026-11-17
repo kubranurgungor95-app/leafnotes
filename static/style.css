@@ -368,3 +368,17 @@ button {
         width: 90vw;
     }
 }
+
+
+
+/* Telefon için arka plan görselleri */
+@media (max-width: 600px) {
+    .bg-layer {
+        background-size: cover;
+        background-position: center;
+    }
+    .bg-gunduz   { background-image: url('gunduz-mobil.jpg'); }
+    .bg-aydinlik { background-image: url('aydinlik-mobil.jpg'); }
+    .bg-gece     { background-image: url('gece-mobil.jpg'); }
+}
+

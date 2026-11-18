@@ -1,0 +1,297 @@
+/* LeafNotes - karşılama (intro) ekranı */
+
+#introOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    background: rgba(28, 14, 6, 0.55);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#introOverlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.intro-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 20px 24px 18px;
+    border-radius: 22px;
+    border: 1px solid rgba(166, 124, 82, 0.75);
+    background: linear-gradient(160deg, rgba(255, 250, 232, 0.97), rgba(247, 232, 196, 0.95));
+    box-shadow: 0 14px 34px rgba(50, 25, 8, 0.45),
+                inset 0 0 0 4px rgba(255, 248, 225, 0.35),
+                inset 0 0 26px rgba(120, 70, 30, 0.14);
+    color: #3b220c;
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+}
+
+.intro-card button {
+    font-family: inherit;
+}
+
+.intro-card button:focus-visible,
+#introHelpBtn:focus-visible {
+    outline: 2px solid #b0862f;
+    outline-offset: 2px;
+}
+
+/* ===== Dil seçici (EN | TR) ===== */
+.intro-lang {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    display: flex;
+    border: 1px solid rgba(139, 90, 43, 0.55);
+    border-radius: 999px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.intro-lang button {
+    border: 0;
+    background: transparent;
+    color: #5c2c16;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 11px;
+    cursor: pointer;
+}
+
+.intro-lang button[aria-pressed="true"] {
+    background: #5c2c16;
+    color: #fcf3e3;
+}
+
+/* ===== Slayt içeriği ===== */
+.intro-slide {
+    animation: introFade 0.45s ease;
+}
+
+@keyframes introFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.intro-art {
+    margin: 16px 0 6px;
+}
+
+.intro-art svg {
+    display: block;
+    width: 200px;
+    max-width: 70%;
+    height: auto;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.intro-mic-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: introPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes introPulse {
+    0%, 100% { transform: scale(0.8); opacity: 0.9; }
+    50%      { transform: scale(1.35); opacity: 0.25; }
+}
+
+.intro-slide h2 {
+    margin: 6px 0 8px;
+    text-align: center;
+    font-size: 25px;
+    line-height: 1.15;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #4a220b;
+}
+
+.intro-lead {
+    margin: 0 0 12px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.35;
+    font-style: italic;
+}
+
+.intro-tip {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border: 1px dashed rgba(166, 124, 82, 0.7);
+    border-radius: 12px;
+    background: rgba(255, 248, 220, 0.7);
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 600;
+    color: #4a220b;
+}
+
+.intro-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.intro-list li {
+    position: relative;
+    margin: 0 0 9px;
+    padding-left: 22px;
+    font-size: 17px;
+    line-height: 1.32;
+    font-weight: 500;
+}
+
+.intro-list li::before {
+    content: "✦";
+    position: absolute;
+    left: 2px;
+    top: 1px;
+    font-size: 12px;
+    color: #b0862f;
+}
+
+.intro-note {
+    margin: 10px 0 0;
+    text-align: center;
+    font-size: 15px;
+    font-style: italic;
+    color: #7a5230;
+}
+
+/* ===== Noktalar ve butonlar ===== */
+.intro-dots {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    margin: 14px 0 4px;
+}
+
+.intro-dots button {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(139, 90, 43, 0.7);
+    background: transparent;
+    cursor: pointer;
+}
+
+.intro-dots button.active {
+    background: #8b5a2b;
+}
+
+.intro-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.intro-skip {
+    background: none;
+    border: 0;
+    padding: 8px 6px;
+    font-size: 16px;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #7a5230;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.intro-skip.is-hidden {
+    visibility: hidden;
+}
+
+.intro-next {
+    min-width: 130px;
+    padding: 8px 22px;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    color: #5a3418;
+    background: linear-gradient(180deg, rgba(255, 247, 218, 0.95), rgba(238, 214, 156, 0.9));
+    border: 1px solid rgba(176, 134, 60, 0.85);
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(110, 70, 20, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.75),
+                inset 0 0 0 3px rgba(255, 250, 230, 0.5);
+    transition: all 0.3s ease;
+}
+
+.intro-next:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(180deg, rgba(255, 251, 232, 1), rgba(246, 225, 172, 0.95));
+}
+
+/* ===== Sağ alttaki "?" butonu (ipuçlarını tekrar açar) ===== */
+#introHelpBtn {
+    position: fixed;
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index: 20;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 700;
+    color: #fcf3e3;
+    background: linear-gradient(135deg, rgba(60, 40, 28, 0.78), rgba(98, 66, 44, 0.72));
+    border: 1px solid rgba(236, 207, 150, 0.6);
+    border-radius: 50%;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(60, 30, 10, 0.28);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#introHelpBtn:hover {
+    transform: translateY(-1px);
+    border-color: #f3d796;
+}
+
+@media (max-width: 600px) {
+    .intro-card {
+        padding: 18px 18px 16px;
+    }
+    .intro-slide h2 {
+        font-size: 23px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-slide,
+    .intro-mic-ring {
+        animation: none;
+    }
+    #introOverlay {
+        transition: none;
+    }
+}

@@ -363,7 +363,7 @@ button {
 /* Küçük ekranlar */
 @media (max-width: 600px) {
     .scene-container {
-        top: 4%;
+        top: 12%;
         left: 5%;
         width: 90vw;
     }

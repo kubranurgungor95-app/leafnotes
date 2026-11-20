@@ -1,5 +1,5 @@
 // LeafNotes - karşılama (intro) ekranı
-// 3 kısa slayt gösterir (Welcome -> What it hears -> Before you record), sonra siteyi açar.
+// 3 kısa slayt gösterir (Welcome -> What it can hear -> Before you record), sonra siteyi açar.
 // İlk ziyarette otomatik açılır; sağ alttaki "?" butonuyla tekrar açılabilir.
 // Dil: EN / TR (ilk açılışta tarayıcı diline göre, seçim hatırlanır).
 
@@ -11,18 +11,34 @@
     var TOTAL = 3;
 
     // ---------- Çizimler (sahne renklerine uygun, sabit SVG) ----------
+    // Birinci çizim dile göre etiket (Mic / Mikrofon) yazdığı için fonksiyon.
     var ART = [
-        // 1) Telefon: mikrofon alt kenarda, altta ses kaynağı
-        '<svg viewBox="0 0 220 158" aria-hidden="true" focusable="false">' +
-            '<rect x="85" y="4" width="50" height="98" rx="10" fill="rgba(255,255,255,0.45)" stroke="#5c2c16" stroke-width="2.5"/>' +
-            '<rect x="91" y="13" width="38" height="76" rx="4" fill="rgba(176,134,47,0.16)"/>' +
-            '<circle class="intro-mic-ring" cx="110" cy="102" r="7" fill="none" stroke="#b0862f" stroke-width="2"/>' +
-            '<circle cx="110" cy="102" r="3.2" fill="#b0862f"/>' +
-            '<path d="M86 118 Q110 107 134 118" fill="none" stroke="#b0862f" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>' +
-            '<path d="M93 126 Q110 118 127 126" fill="none" stroke="#b0862f" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>' +
-            '<path d="M100 134 Q110 129 120 134" fill="none" stroke="#b0862f" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>' +
-            '<text x="110" y="152" text-anchor="middle" font-size="22" fill="#b0862f">\u266A</text>' +
-        '</svg>',
+        // 1) Ses insandan telefonun alt kenarına (mikrofona) gidiyor
+        function () {
+            return '<svg viewBox="0 0 300 190" style="width:270px;max-width:92%" aria-hidden="true" focusable="false">' +
+                '<circle cx="46" cy="84" r="17" fill="none" stroke="#5c2c16" stroke-width="2.5"/>' +
+                '<path d="M12 160 Q12 116 46 116 Q80 116 80 160" fill="none" stroke="#5c2c16" stroke-width="2.5"/>' +
+                '<ellipse cx="62" cy="90" rx="3" ry="4" fill="#b0862f"/>' +
+                '<path d="M92 76 Q102 90 92 104" fill="none" stroke="#b0862f" stroke-width="3" stroke-linecap="round"/>' +
+                '<path d="M108 66 Q122 90 108 114" fill="none" stroke="#b0862f" stroke-width="3" stroke-linecap="round" opacity="0.8"/>' +
+                '<path d="M124 56 Q142 90 124 124" fill="none" stroke="#b0862f" stroke-width="3" stroke-linecap="round" opacity="0.6"/>' +
+                '<path d="M140 92 L172 106" fill="none" stroke="#b0862f" stroke-width="3" stroke-dasharray="5 5" stroke-linecap="round"/>' +
+                '<path d="M164 96 L176 108 L160 112" fill="none" stroke="#b0862f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+                '<text x="100" y="52" font-size="24" fill="#b0862f">\u266A</text>' +
+                '<g transform="translate(232 92) rotate(60)">' +
+                    '<rect x="-24" y="-48" width="48" height="96" rx="9" fill="rgba(255,255,255,0.45)" stroke="#5c2c16" stroke-width="3"/>' +
+                    '<rect x="-18" y="-38" width="36" height="66" rx="3" fill="rgba(176,134,47,0.16)"/>' +
+                    '<rect x="-24" y="38" width="48" height="10" rx="5" fill="#b0862f" stroke="#5c2c16" stroke-width="3"/>' +
+                    '<circle cx="-10" cy="43" r="1.6" fill="#5c2c16"/>' +
+                    '<circle cx="-4" cy="43" r="1.6" fill="#5c2c16"/>' +
+                    '<rect x="2" y="41.5" width="8" height="3" rx="1.5" fill="#5c2c16"/>' +
+                    '<circle cx="14" cy="43" r="1.6" fill="#5c2c16"/>' +
+                '</g>' +
+                '<circle class="intro-mic-ring" cx="195" cy="113.5" r="9" fill="none" stroke="#b0862f" stroke-width="2"/>' +
+                '<path d="M192 122 L170 158" fill="none" stroke="#5c2c16" stroke-width="1.5"/>' +
+                '<text x="130" y="176" font-size="20" font-style="italic" font-weight="700" fill="#4a220b">' + TEXT[lang].mic + '</text>' +
+            '</svg>';
+        },
 
         // 2) Tek nota (olur) / akor (olmaz)
         '<svg viewBox="0 0 220 104" aria-hidden="true" focusable="false">' +
@@ -54,30 +70,28 @@
             skip: 'Skip',
             help: 'Tips for the best result',
             step: 'Step',
+            mic: 'Mic',
             slides: [
                 {
                     title: 'Welcome to LeafNotes',
-                    lead: 'Sing, hum or play, and watch your sound turn into sheet music.',
-                    tip: 'For the best result, hold the bottom edge of your phone (where the microphone is) close to the sound.',
-                    items: ['Pick a quiet spot, with no background music or noise.']
+                    lead: 'Play your instrument or sing. Aim the sound at the bottom of your phone, clear and loud.',
+                    note: 'Pick a quiet spot.'
                 },
                 {
                     title: 'What it can hear',
                     items: [
-                        'One note at a time. Melodies work great, but chords (several notes together) can\u2019t be told apart.',
-                        'Voice, whistle, flute, clarinet, violin\u2026 and piano or guitar when you play single notes.',
-                        'Made for Western tuning (12 semitones). In-between notes, like in Turkish makam music, are rounded to the nearest note.',
-                        'Very low or very high sounds (outside about G3\u2013G6) aren\u2019t detected.'
+                        'Single notes only. Melodies work great, chords don\u2019t.',
+                        'Piano, guitar, flute, clarinet, violin, whistle, and voice, played one note at a time.',
+                        'Made for Western tuning. Makam\u2019s in-between notes are rounded to the nearest note.',
+                        'Very low or very high sounds aren\u2019t detected.'
                     ]
                 },
                 {
                     title: 'Before you record',
                     items: [
                         'Recording stops by itself after 30 seconds.',
-                        'Play each note clearly and for a similar length. A steady rhythm gives better results.',
                         'Tap Allow when your browser asks for the microphone. Your recording is only analyzed, never stored.'
-                    ],
-                    note: 'Results are an approximation, not a perfect transcription.'
+                    ]
                 }
             ]
         },
@@ -87,30 +101,28 @@
             skip: 'Ge\u00e7',
             help: 'En iyi sonu\u00e7 i\u00e7in ipu\u00e7lar\u0131',
             step: 'Ad\u0131m',
+            mic: 'Mikrofon',
             slides: [
                 {
                     title: 'LeafNotes\u2019a ho\u015f geldin',
-                    lead: 'S\u00f6yle, m\u0131r\u0131ldan ya da \u00e7al; sesinin notalara d\u00f6n\u00fc\u015fmesini izle.',
-                    tip: 'En iyi sonu\u00e7 i\u00e7in telefonunun alt kenar\u0131n\u0131 (mikrofonun oldu\u011fu yer) sese yakla\u015ft\u0131r.',
-                    items: ['Sessiz bir yer se\u00e7, arkada m\u00fczik ya da g\u00fcr\u00fclt\u00fc olmas\u0131n.']
+                    lead: 'Enstr\u00fcman\u0131n\u0131 \u00e7al ya da s\u00f6yle. Sesi telefonun alt kenar\u0131na do\u011fru, net ve y\u00fcksek ver.',
+                    note: 'Sessiz bir yer se\u00e7.'
                 },
                 {
-                    title: 'Neleri duyabilir?',
+                    title: 'Ne duyabilir?',
                     items: [
-                        'Ayn\u0131 anda tek ses. Melodiler \u00e7ok iyi \u00e7al\u0131\u015f\u0131r, ama akorlar (birden fazla ses ayn\u0131 anda) ay\u0131rt edilemez.',
-                        'Ses, \u0131s\u0131k, fl\u00fct, klarnet, keman\u2026 ve notalar\u0131 tek tek \u00e7ald\u0131\u011f\u0131nda piyano ile gitar.',
-                        'Bat\u0131 ses sistemi (12 yar\u0131m ses) i\u00e7in tasarland\u0131. T\u00fcrk makam m\u00fczi\u011findeki gibi ara sesler en yak\u0131n notaya yuvarlan\u0131r.',
-                        '\u00c7ok pes ya da \u00e7ok tiz sesler (yakla\u015f\u0131k G3\u2013G6 d\u0131\u015f\u0131nda) alg\u0131lanmaz.'
+                        'Sadece tek tek notalar. Ezgiler harika \u00e7al\u0131\u015f\u0131r, akorlar \u00e7al\u0131\u015fmaz.',
+                        'Piyano, gitar, fl\u00fct, klarnet, keman, \u0131s\u0131k ve ses, tek tek notalarla.',
+                        'Bat\u0131 m\u00fczi\u011fi ses d\u00fczeni i\u00e7in yap\u0131ld\u0131. Makamdaki koma sesleri en yak\u0131n notaya yuvarlan\u0131r.',
+                        '\u00c7ok pes veya \u00e7ok tiz sesler alg\u0131lanmaz.'
                     ]
                 },
                 {
                     title: 'Kay\u0131ttan \u00f6nce',
                     items: [
-                        'Kay\u0131t 30 saniye sonra kendili\u011finden durur.',
-                        'Her notay\u0131 net ve benzer uzunlukta \u00e7al. D\u00fczenli bir ritim daha iyi sonu\u00e7 verir.',
-                        'Taray\u0131c\u0131 mikrofon izni sorunca \u0130zin ver\u2019e bas. Kayd\u0131n yaln\u0131zca analiz edilir, saklanmaz.'
-                    ],
-                    note: 'Sonu\u00e7lar yakla\u015f\u0131kt\u0131r, kusursuz bir transkripsiyon de\u011fildir.'
+                        '30 saniyede kendili\u011finden durur.',
+                        'Taray\u0131c\u0131 mikrofon izni isteyince \u201c\u0130zin ver\u201de bas. Kay\u0131t saklanmaz, sadece analiz edilir.'
+                    ]
                 }
             ]
         }
@@ -212,7 +224,8 @@
         var slide = el('div', 'intro-slide');
 
         var art = el('div', 'intro-art');
-        art.innerHTML = ART[index]; // sabit, kendi yazdığımız SVG
+        var drawing = ART[index];
+        art.innerHTML = typeof drawing === 'function' ? drawing() : drawing; // sabit, kendi yazdığımız SVG
         slide.appendChild(art);
 
         var h = el('h2', '', s.title);

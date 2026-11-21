@@ -6,7 +6,6 @@
 (function () {
     'use strict';
 
-    var SHOW_EVERY_TIME = true;   // true: site her açıldığında intro hemen çıkar
     var SEEN_KEY = 'leafnotes_intro_seen';
     var LANG_KEY = 'leafnotes_lang';
     var TOTAL = 3;
@@ -324,9 +323,8 @@
     document.body.appendChild(helpBtn);
     render();
 
-    // Site açılınca hemen aç.
-    // Sadece ilk ziyarette açılsın istersen en üstteki SHOW_EVERY_TIME değerini false yap.
-    if (SHOW_EVERY_TIME || load(SEEN_KEY) !== '1') {
-        openIntro();
+    // İlk ziyarette otomatik aç
+    if (load(SEEN_KEY) !== '1') {
+        setTimeout(openIntro, 300);
     }
 })();
